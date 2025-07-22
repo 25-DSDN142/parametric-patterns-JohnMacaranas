@@ -1,7 +1,11 @@
 //your parameter variables go here!
-let rect_width  = 20;
-let rect_height = 30;
+let pCols = 8;
+let pRows = 8;
 
+
+
+let tilesW = 200/ pCols;
+let tilesH = 200/ pRows;
 
 function setup_wallpaper(pWallpaper) {
   pWallpaper.output_mode(DEVELOP_GLYPH);
@@ -13,13 +17,50 @@ function setup_wallpaper(pWallpaper) {
   //Grid settings
   pWallpaper.grid_settings.cell_width  = 200;
   pWallpaper.grid_settings.cell_height = 200;
-  pWallpaper.grid_settings.row_offset  = 50;
+  pWallpaper.grid_settings.row_offset  = 100;
 }
 
 function wallpaper_background() {
   background(240, 255, 240); //light honeydew green colour
 }
 
-function my_symbol() { // do not rename this function. Treat this similarly to a Draw function
-  rect(40 ,40, rect_width, rect_height);
+function my_symbol(){ // do not rename this function. Treat this similarly to a Draw function
+var rows = 0
+while (rows < pRows){
+  if (rows % 1 == 0){
+    rotate(180);
+    translate(-tilesW*pCols, -tilesH*pRows);
+  } else {
+    fill(220);
+    translate(tilesW*cols, tilesH*rows);
+  }
+  var cols = 0
+  while (cols < pCols){
+    if (cols % 1 == 0){
+      rotate(180);
+      translate(-tilesW*pCols, -tilesH*pRows);
+
+    } else {
+      rotate(-180);
+    }
+    push();
+    translate(cols*tilesW, rows*tilesH);
+    supes();
+    pop();
+    cols = cols + 1;
+  }
+  rows = rows + 1;
+  }
+   
+}
+
+function supes(){
+  beginShape();
+  vertex(0,tilesH/4);
+  vertex(tilesW/4, 0);
+  vertex(tilesW - tilesW/4, 0);
+  vertex(tilesW, tilesH/4);
+  vertex(tilesW/2, tilesH);
+  endShape(CLOSE);
+
 }
