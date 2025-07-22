@@ -1,8 +1,6 @@
 //your parameter variables go here!
 let pCols = 8;
-let pRows = 8;
-
-
+let pRows = 6;
 
 let tilesW = 200/ pCols;
 let tilesH = 200/ pRows;
@@ -30,8 +28,11 @@ while (rows < pRows){
   if (rows % 1 == 0){
     rotate(180);
     translate(-tilesW*pCols, -tilesH*pRows);
+  } else if (rows % 4 == 0){
+    fill('#32a852');
+  
   } else {
-    fill(220);
+    fill(250);
     translate(tilesW*cols, tilesH*rows);
   }
   var cols = 0
