@@ -1,5 +1,11 @@
 //your parameter variables go here!
-let bScale = 0.5
+let pCols = 6; //number of circles in a row
+let thickness = 1; //line thickness
+let numLines = 3; //from 1-3
+let corners = false; //circle or square
+let R = 60; //rgb colour vaules
+let G = 189;
+let B = 250;
 
 
 function setup_wallpaper(pWallpaper) {
@@ -20,26 +26,56 @@ function wallpaper_background() {
 }
 
 function my_symbol(){ // do not rename this function. Treat this similarly to a Draw function
-bubbles();
-// tilesW = width/ 150
-// thilesH = height/80
+let tiles = 200/ pCols;
 
-// var rows = 0;
-// while(rows < 12){
-//   var cols = 0;
-//   while(cols < 12){
-//     push(); 
-//     translate(cols*120, rows*80);
-//     scale(bScale, bScale);
-//     bubbles();
-//     pop();
-    
-//     cols = cols + 1;
-//   }
-//   rows = rows + 1;
-// }
-  
+  var rows = 0
+  while (rows < pCols*2){
+    if(rows % 2 == 0){
+      translate(-tiles/2, -tiles/2);
+    } else{
+      translate(tiles/2, -tiles/2);
+    }
+    var cols = 0
+    while (cols < pCols){
+      push();
+      fill(R, G, B);
+      stroke(R-50, G-50, B-50);
+      strokeWeight (thickness);
+      translate(tiles/2, tiles/2);
+      if(corners === false){
+        if(numLines === 3){
+          ellipse(cols*tiles, rows*tiles, tiles, tiles);
+          ellipse(cols*tiles, rows*tiles, tiles*0.75, tiles*0.75);
+          ellipse(cols*tiles, rows*tiles, tiles/2, tiles/2);
+      } else if(numLines === 2){
+          ellipse(cols*tiles, rows*tiles, tiles, tiles);
+          ellipse(cols*tiles, rows*tiles, tiles/2, tiles/2);
+      } else {  
+          ellipse(cols*tiles, rows*tiles, tiles, tiles);
+      }
+    } else {
+      rectMode(CENTER);
+      if(numLines === 3){
+        rect(cols*tiles, rows*tiles, tiles, tiles);
+        rect(cols*tiles, rows*tiles, tiles*0.75, tiles*0.75);
+        rect(cols*tiles, rows*tiles, tiles/2, tiles/2);
+      } else if (numLines === 2){
+        rect(cols*tiles, rows*tiles, tiles, tiles);
+        rect(cols*tiles, rows*tiles, tiles/2, tiles/2);
+      } else {
+        rect(cols*tiles, rows*tiles, tiles, tiles);
+      }
+    }
+      pop();
+
+      cols = cols + 1;
+
+    }
+    rows = rows + 1;
+  }
 }
+  
+
 
 
 function bubbles(){
@@ -72,3 +108,23 @@ function bubbles(){
   ellipse(60, 60, 5, 5);
   ellipse(30, 75, 10, 10);
 }
+
+let Tiles = 10;
+// let tilesW = 200/ Tiles;
+// let tilesH = 200/ Tiles;
+
+
+// for( let x = 0; x < Tiles; x ++){
+//   for( let y = 0; y < Tiles; y ++){  
+//      if (y < Tiles/2){
+//     fill(15);
+//   } else {
+//     fill (255);
+//     }
+//      ellipse(x*tilesW, y*tilesH, tilesW, tilesH);
+    
+
+//   }
+  
+//   }
+  
